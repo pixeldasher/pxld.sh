@@ -1,0 +1,99 @@
+/*#### Start of Miscellaneous ####*/
+* {
+    margin: 0;
+    padding: 0;
+
+    overflow: hidden;
+}
+
+::-webkit-scrollbar {
+    display: none;
+    width: 0;
+}
+/*##### End of Miscellaneous #####*/
+
+
+
+/*#### Start of IDs ####*/
+#blocker {
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background-color: rgba(0,0,0,1);
+    background-image: url("../img/pxldsh_pxl.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto calc(11.75vmin + 2em);
+    position: fixed;
+}
+
+#bg {
+    background-position: 50% 78.725%;
+    background-repeat: no-repeat;
+    background-size: 112.5vmax;
+    z-index: -5;
+    height: 100%;
+    width: 100%;
+}
+
+#bg.no-webp {
+    background-image: url("../img/bg.png");
+}
+
+#bg.webp {
+    background-image: url("../img/bg.webp");
+}
+
+#title {
+    background-image: url(../img/yumenokuni.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 50vmin;
+    height: 100%;
+    width: 100%;
+}
+
+#logo {
+    background-image: url(../img/pxldsh.svg);
+    background-position: center;
+    background-size: auto calc(5.5vmin + 2em);
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+
+#trans {
+    background-color: black;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none;
+}
+/*##### End of IDs #####*/
+
+
+
+/*#### Start of Other ####*/
+body {
+    background-color: black;
+}
+
+header {
+    width: 100vw;
+    height: 100vh;
+}
+
+nav {
+    top: 0;
+    width: 100vw;
+    height: calc(7.5vmin + 2em);
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+}
+/*##### End of Other #####*/

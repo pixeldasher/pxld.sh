@@ -1,0 +1,14 @@
+{
+	"root": true,
+	"env": {
+		"browser": true
+	},
+	"parserOptions": {
+		"ecmaVersion": "latest"
+	},
+	"extends": ["eslint:recommended", "prettier"],
+	"plugins": ["prettier"],
+	"rules": {
+		"prettier/prettier": ["error"]
+	}
+}

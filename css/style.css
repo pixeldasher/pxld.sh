@@ -1,0 +1,130 @@
+@font-face {
+	font-style: normal;
+	font-weight: 400;
+	src: local("Kosugi Maru"), url("../fonts/kosugimaru.woff2") format("woff2");
+	font-family: "Kosugi Maru";
+	font-display: block;
+}
+@font-face {
+	font-style: normal;
+	font-weight: 400;
+	src: local("Apfel Grotezk"), url("../fonts/apfelgrotezk.woff2") format("woff2");
+	font-family: "Apfel Grotezk";
+	font-display: block;
+}
+*,
+::before,
+::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	pointer-events: none;
+}
+html,
+body {
+	background-color: black;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	color: white;
+}
+.parallax {
+	transform: translate3d(0px, 0px, 0px);
+}
+#noise {
+	position: fixed;
+	opacity: 0.5;
+	z-index: 5;
+	width: 100%;
+	height: 100%;
+}
+header {
+	position: absolute;
+	top: 0.625em;
+	left: 50%;
+	transform: translate3d(-50%, -50%, 0);
+	z-index: 1;
+	font-size: 3rem;
+	font-size: min(max(2.25rem, 9vmin), 4.5rem);
+	line-height: 1em;
+	font-family: "Apfel Grotezk", sans-serif;
+	letter-spacing: -0.0425em;
+}
+header > span {
+	position: absolute;
+}
+header > span:first-child {
+	top: -0.3em;
+	left: -2em;
+}
+header > span:last-child {
+	top: 0.3em;
+	left: -0.5625em;
+}
+main {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+#content {
+	display: flex;
+	position: absolute;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	font-family: "Kosugi Maru", sans-serif;
+	text-align: center;
+}
+#content > .jp {
+	margin-right: -0.5425em;
+	margin-bottom: 0.125em;
+	font-size: 3rem;
+	font-size: min(max(1.5rem, 6vmin), 3rem);
+}
+#content > .en {
+	opacity: 0.5;
+	font-size: 1.25rem;
+	font-size: min(max(0.75rem, 3vmin), 1.5rem);
+}
+#bg {
+	transform: scale3d(1.1, 1.1, 1);
+	width: 100%;
+	height: 100%;
+}
+#bg > div {
+	position: absolute;
+	background-image: url(../img/bg.webp);
+	background-position: center 80%;
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+html.no-webp #bg > div {
+	background-image: url(../img/bg.png);
+}
+#bg > div:nth-child(2) {
+	z-index: 1;
+	-webkit-mask-image: linear-gradient(
+		to left,
+		rgba(255, 255, 255, 1) 0%,
+		rgba(255, 255, 255, 0) 42.5%,
+		rgba(255, 255, 255, 0) 57.5%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	mask-image: linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 42.5%, rgba(255, 255, 255, 0) 57.5%, rgba(255, 255, 255, 1) 100%);
+}
+#bg > div:nth-child(3) {
+	z-index: 2;
+	-webkit-mask-image: linear-gradient(
+		to left,
+		rgba(255, 255, 255, 1) 0%,
+		rgba(255, 255, 255, 0) 25%,
+		rgba(255, 255, 255, 0) 75%,
+		rgba(255, 255, 255, 1) 100%
+	);
+	mask-image: linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 25%, rgba(255, 255, 255, 0) 75%, rgba(255, 255, 255, 1) 100%);
+}

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+        <meta content="Good night from the land of dreams." name="description">
+
+        <title>land of dreams</title>
+        
+        <link rel="preload" href="./css/style.css" as="style">
+        <link href="./css/style.css" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" type="image/x-icon" href="./img/yumenokuni.ico">
+        
+        <link rel="preload" href="./js/anime.min.js" as="script">
+        <link rel="preload" href="./js/parallax.min.js" as="script">
+        <script defer type="application/javascript" src="./js/anime.min.js"></script>
+        <script defer type="application/javascript" src="./js/parallax.min.js"></script>
+
+        <link rel="preload" href="./fonts/space_grotesk/space_grotesk.css" as="style">
+        <link href="./fonts/space_grotesk/space_grotesk.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+        <nav>
+            <div id="transition"></div>
+
+            <div id="left"></div>
+            <div id="bottom"></div>
+            <div id="right"></div>
+            <div id="top">
+                <div id="logo"></div>
+            </div>
+        </nav>
+
+        <header>
+            <div id="scene"> 
+                <div data-depth="0.225">
+                    <div id="bg"></div>
+                </div>
+
+                <div data-depth="0.5">
+                    <div id="title"></div>
+                </div>
+            </div>
+          	
+          	<div id="mobile">
+				<div id="mobile_bg">
+              		<div id="mobile_title"></div>
+          		</div>
+          	</div>
+        </header>
+
+        <main>
+            <section>
+                <div>
+                    <h1>Hello, world!</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nam placerat ligula at tortor finibus, interdum egestas neque vulputate.
+                        Fusce nulla risus, aliquet at erat id, eleifend commodo dui.
+                        Nullam ut orci ultricies, finibus leo ultricies, porttitor eros.
+                        In dignissim suscipit tellus, vel iaculis felis auctor quis. Nulla facilisi.
+                        Proin ipsum urna, sodales at feugiat sagittis, pellentesque eget urna.
+                        Suspendisse est nisl, bibendum consequat vehicula ac, dictum in urna.
+                        Fusce vel lorem cursus magna euismod placerat.
+                        Aliquam pretium volutpat velit, placerat ullamcorper ex accumsan eleifend.
+                        Sed nec ipsum justo.
+                        Curabitur nulla nisi, euismod accumsan lorem vitae, condimentum mollis tellus.
+                        Nullam lacinia pulvinar metus, ac posuere velit pulvinar vitae.
+                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                        Donec dictum malesuada justo, vitae efficitur nulla dapibus nec.
+                        Proin ipsum urna, sodales at feugiat sagittis, pellentesque eget urna.
+                        Suspendisse est nisl, bibendum consequat vehicula ac, dictum in urna.
+                        Fusce vel lorem cursus magna euismod placerat.
+                        Ut ornare interdum odio, sit amet dignissim arcu.
+                        Nulla tempor rhoncus elit, quis dignissim erat faucibus eu.
+                    </p>
+                </div>
+            </section>
+            
+            <section class="invert">
+                <div>
+                    <h1>Hallo, Welt!</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Nam placerat ligula at tortor finibus, interdum egestas neque vulputate.
+                        Fusce nulla risus, aliquet at erat id, eleifend commodo dui.
+                        Nullam ut orci ultricies, finibus leo ultricies, porttitor eros.
+                        In dignissim suscipit tellus, vel iaculis felis auctor quis. Nulla facilisi.
+                        Proin ipsum urna, sodales at feugiat sagittis, pellentesque eget urna.
+                        Suspendisse est nisl, bibendum consequat vehicula ac, dictum in urna.
+                        Fusce vel lorem cursus magna euismod placerat.
+                        Aliquam pretium volutpat velit, placerat ullamcorper ex accumsan eleifend.
+                        Sed nec ipsum justo.
+                        Curabitur nulla nisi, euismod accumsan lorem vitae, condimentum mollis tellus.
+                        Nullam lacinia pulvinar metus, ac posuere velit pulvinar vitae.
+                        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                        Donec dictum malesuada justo, vitae efficitur nulla dapibus nec.
+                        Proin ipsum urna, sodales at feugiat sagittis, pellentesque eget urna.
+                        Suspendisse est nisl, bibendum consequat vehicula ac, dictum in urna.
+                        Fusce vel lorem cursus magna euismod placerat.
+                        Ut ornare interdum odio, sit amet dignissim arcu.
+                        Nulla tempor rhoncus elit, quis dignissim erat faucibus eu.
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© pixeldasher</p>
+        </footer>
+    </body>
+
+    <script defer type="application/javascript">
+        window.addEventListener("load", function() {
+            if (!((/iPad|iPhone|iPod/.test(navigator.platform) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) && !window.MSStream)) {
+                var scene = document.getElementById("scene");
+                var parallaxInstance = new Parallax(scene);
+
+                const myNode = document.getElementById("mobile");
+                myNode.remove();
+            } else {
+                const myNode = document.getElementById("scene");
+                myNode.remove();
+            }
+
+
+            anime(
+                {
+                targets: '#title',
+                scale: [2, 1],
+                delay: 250,
+                easing: 'easeOutExpo',
+                }
+            );
+            anime(
+                {
+                targets: '#mobile_title',
+                scale: [2, 1],
+                delay: 250,
+                easing: 'easeOutExpo',
+                }
+            );
+            anime(
+                {
+                targets: '#transition',
+                opacity: 0,
+                delay: 250,
+                easing: 'easeOutExpo',
+                }
+            );
+            anime(
+                {
+                targets: '#bg',
+                scale: [1.0125, 1.125],
+                delay: 250,
+                easing: 'easeOutExpo',
+                }
+            );
+            anime(
+                {
+                targets: '#mobile_bg',
+                scale: [1.0125, 1.125],
+                delay: 250,
+                easing: 'easeOutExpo',
+                }
+            );
+            anime(
+                {
+                targets: ["nav > #left", "nav > #right", "nav > #bottom"],
+                scale: [5, 1],
+                delay: 250,
+                easing: 'easeOutExpo',
+                }
+            );
+            anime(
+                {
+                targets: '#logo',
+                rotateX: ["-90deg", "0deg"],
+                delay: 250,
+                easing: 'easeOutExpo',
+                }
+            );
+
+            
+            window.addEventListener('resize', () => {
+                document.documentElement.style.setProperty("--frame-height", window.innerHeight + "px");
+                document.documentElement.style.setProperty("--frame-width", window.innerWidth + "px");
+            });
+        });
+    </script>
+</html>
