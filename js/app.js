@@ -25,10 +25,10 @@
 		imgSupported("webp", "../img/bg.webp");
 
 		// initialize variables
-		let centerX = _w.innerWidth / 2,
-			centerY = _w.innerHeight / 2;
-		let mousePosX = centerX,
-			mousePosY = centerY;
+		let centerX = _w.innerWidth / 2;
+		let centerY = _w.innerHeight / 2;
+		let mousePosX = centerX;
+		let mousePosY = centerY;
 
 		/**
 		 * @type {Function} Update center variables
@@ -44,8 +44,8 @@
 		 */
 		const updateMousePos = (args) => {
 			if (typeof args !== "object") return;
-			mousePosX = args.x ?? args.e.pageX;
-			mousePosY = args.y ?? args.e.pageY;
+			mousePosX = args.x || args.e.pageX;
+			mousePosY = args.y || args.e.pageY;
 		};
 
 		// mouse events
@@ -65,19 +65,24 @@
 
 		// get all parallax items and define transform variables
 		const sceneItems = _d.getElementsByClassName("parallax");
-		let transformX = 0,
-			transformY = 0;
+		let transformX = 0;
+		let transformY = 0;
+		let performancePrev = 0;
 		/**
 		 * @type {FrameRequestCallback} Render everything on scene
 		 */
 		const sceneRenderer = () => {
+			const performanceNow = performance.now(),
+				elapsed = performanceNow - performancePrev,
+				calculated = ~~((1 / elapsed) * 112.5);
+
 			// define distance variables
 			let distanceX = centerX - mousePosX - transformX,
 				distanceY = centerY - mousePosY - transformY;
 
 			// calculate transform
-			transformX += distanceX / 12;
-			transformY += distanceY / 12;
+			transformX += distanceX / calculated;
+			transformY += distanceY / calculated;
 
 			// update all parallax items
 			for (const item of sceneItems) {
@@ -85,6 +90,7 @@
 				const depth = Number(item.getAttribute("data-depth"));
 				item.style.transform = `translate3d(${~~((transformX * depth) / 10) / 10}px, ${~~((transformY * depth) / 10) / 10}px, 0px)`;
 			}
+			performancePrev = performanceNow;
 			requestAnimationFrame(sceneRenderer);
 		};
 		requestAnimationFrame(sceneRenderer);
