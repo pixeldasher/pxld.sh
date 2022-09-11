@@ -1,6 +1,6 @@
 {
-  "tabWidth": 4,
-  "useTabs": true,
-  "printWidth": 160,
-  "plugins": ["prettier-plugin-css-order"]
+	"tabWidth": 4,
+	"useTabs": true,
+	"printWidth": 160,
+	"plugins": ["prettier-plugin-css-order"]
 }

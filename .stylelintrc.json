@@ -1,0 +1,33 @@
+{
+	"extends": ["stylelint-config-standard", "stylelint-config-prettier"],
+	"rules": {
+		"number-max-precision": 5,
+		"declaration-property-unit-allowed-list": {
+			"min-width": ["px"]
+		},
+		"unit-disallowed-list": [
+			["cm", "mm", "Q", "in", "pc", "pt", "px"],
+			{
+				"ignoreProperties": { "px": ["/--([a-z][a-z0-9]*)(-[a-z0-9]+)*/"] },
+				"ignoreMediaFeatureNames": { "px": ["min-width"] }
+			}
+		],
+		"property-no-vendor-prefix": [
+			true,
+			{
+				"ignoreProperties": ["/.*/"]
+			}
+		],
+		"value-no-vendor-prefix": [
+			true,
+			{
+				"ignoreValues": ["/.*/"]
+			}
+		],
+		"selector-class-pattern": "(([a-z][a-z0-9]*)(-|_|[a-z0-9]+)*)",
+		"media-feature-name-allowed-list": ["min-width", "prefers-reduced-motion"],
+		"media-feature-name-value-allowed-list": {
+			"min-width": ["576px", "768px", "992px", "1200px", "1400px"]
+		}
+	}
+}

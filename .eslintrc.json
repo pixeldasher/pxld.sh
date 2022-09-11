@@ -9,6 +9,9 @@
 	"extends": ["eslint:recommended", "prettier"],
 	"plugins": ["prettier"],
 	"rules": {
-		"prettier/prettier": ["error"]
+		"prettier/prettier": "error",
+		"no-implicit-coercion": "error",
+		"no-unused-vars": "off",
+		"no-console": "warn"
 	}
 }
