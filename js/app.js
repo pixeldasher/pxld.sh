@@ -11,23 +11,18 @@
 	const main = function (_w, _d, _r) {
 		/**
 		 * @type {Function} Image format support detection
-		 * @param {String} format Format to check
-		 * @param {String} dataUri Base64 encoded URI of object
+		 * @param {String} filePath Format to check
 		 */
-		const imgSupported = (format, dataUri) => {
-			if (!format || !dataUri) return;
+		const imgSupported = (format, filePath) => {
+			if (typeof format !== "string" || typeof filePath !== "string") return;
 			const img = new Image();
-			img.src = `data:image/${format};base64,${dataUri}`;
+			img.src = filePath;
 			img.onerror = () => {
 				_r.classList.add(`no-${format.toLowerCase()}`);
 				return false;
 			};
 		};
-		imgSupported(
-			"avif",
-			"AAAAHGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZgAAAPBtZXRhAAAAAAAAAChoZGxyAAAAAAAAAABwaWN0AAAAAAAAAAAAAAAAbGliYXZpZgAAAAAOcGl0bQAAAAAAAQAAAB5pbG9jAAAAAEQAAAEAAQAAAAEAAAEUAAAAFQAAAChpaW5mAAAAAAABAAAAGmluZmUCAAAAAAEAAGF2MDFDb2xvcgAAAABoaXBycAAAAElpcGNvAAAAFGlzcGUAAAAAAAAAAQAAAAEAAAAOcGl4aQAAAAABCAAAAAxhdjFDgQAcAAAAABNjb2xybmNseAABAAEAAQAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAAB1tZGF0EgAKBxgADlgICAkyCB/xgAAghQm0"
-		);
-		imgSupported("webp", "UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==");
+		imgSupported("webp", "../img/bg.webp");
 
 		// initialize variables
 		let centerX = _w.innerWidth / 2,
@@ -48,7 +43,7 @@
 		 * @param {Object | Event} args Window object
 		 */
 		const updateMousePos = (args) => {
-			if (typeof args === "undefined") return;
+			if (typeof args !== "object") return;
 			mousePosX = args.x ?? args.e.pageX;
 			mousePosY = args.y ?? args.e.pageY;
 		};
@@ -88,7 +83,7 @@
 			for (const item of sceneItems) {
 				if (!(item instanceof HTMLElement)) return;
 				const depth = Number(item.getAttribute("data-depth"));
-				item.style.transform = `translate3d(${~~(transformX * depth) / 100}px, ${~~(transformY * depth) / 100}px, 0px)`;
+				item.style.transform = `translate3d(${~~((transformX * depth) / 10) / 10}px, ${~~((transformY * depth) / 10) / 10}px, 0px)`;
 			}
 			requestAnimationFrame(sceneRenderer);
 		};
