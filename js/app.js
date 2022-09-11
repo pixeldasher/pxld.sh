@@ -49,8 +49,8 @@
 		 */
 		const updateMousePos = (args) => {
 			if (typeof args === "undefined") return;
-			mousePosX = args.x || args.e.pageX;
-			mousePosY = args.y || args.e.pageY;
+			mousePosX = args.x ?? args.e.pageX;
+			mousePosY = args.y ?? args.e.pageY;
 		};
 
 		// mouse events
@@ -68,15 +68,14 @@
 			});
 		});
 
-		// calculate parallax positions
-		const sceneItems = _d.querySelectorAll(".parallax");
+		// get all parallax items and define transform variables
+		const sceneItems = _d.getElementsByClassName("parallax");
 		let transformX = 0,
 			transformY = 0;
-
 		/**
-		 * @type {Function} Image format support detection
+		 * @type {FrameRequestCallback} Render everything on scene
 		 */
-		const parallaxRenderer = () => {
+		const sceneRenderer = () => {
 			// define distance variables
 			let distanceX = centerX - mousePosX - transformX,
 				distanceY = centerY - mousePosY - transformY;
@@ -86,18 +85,11 @@
 			transformY += distanceY / 12;
 
 			// update all parallax items
-			sceneItems.forEach((item) => {
+			for (const item of sceneItems) {
 				if (!(item instanceof HTMLElement)) return;
 				const depth = Number(item.getAttribute("data-depth"));
 				item.style.transform = `translate3d(${~~(transformX * depth) / 100}px, ${~~(transformY * depth) / 100}px, 0px)`;
-			});
-		};
-
-		/**
-		 * @type {FrameRequestCallback} Render everything on scene
-		 */
-		const sceneRenderer = () => {
-			parallaxRenderer();
+			}
 			requestAnimationFrame(sceneRenderer);
 		};
 		requestAnimationFrame(sceneRenderer);
