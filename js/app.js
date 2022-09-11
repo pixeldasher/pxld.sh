@@ -1,16 +1,25 @@
 !(function () {
-	// strict js mode
+	// Strict mode
 	"use strict";
 
-	// main function
-	const main = function (w, d, r) {
-		// img format support detection
-		const imgSupported = (format = false, dataUri = false) => {
+	/**
+	 * @type {Function} Main function
+	 * @param {Window} _w Window object
+	 * @param {Document} _d Document object
+	 * @param {HTMLElement} _r Root element object
+	 */
+	const main = function (_w, _d, _r) {
+		/**
+		 * @type {Function} Image format support detection
+		 * @param {String} format Format to check
+		 * @param {String} dataUri Base64 encoded URI of object
+		 */
+		const imgSupported = (format, dataUri) => {
 			if (!format || !dataUri) return;
 			const img = new Image();
 			img.src = `data:image/${format};base64,${dataUri}`;
 			img.onerror = () => {
-				r.classList.add(`no-${format.toLowerCase()}`);
+				_r.classList.add(`no-${format.toLowerCase()}`);
 				return false;
 			};
 		};
@@ -21,40 +30,52 @@
 		imgSupported("webp", "UklGRhoAAABXRUJQVlA4TA0AAAAvAAAAEAcQERGIiP4HAA==");
 
 		// initialize variables
-		let centerX = w.innerWidth / 2,
-			centerY = w.innerHeight / 2;
+		let centerX = _w.innerWidth / 2,
+			centerY = _w.innerHeight / 2;
 		let mousePosX = centerX,
 			mousePosY = centerY;
 
-		// update functions
+		/**
+		 * @type {Function} Update center variables
+		 */
 		const updateCenter = () => {
-			centerX = w.innerWidth / 2;
-			centerY = w.innerHeight / 2;
+			centerX = _w.innerWidth / 2;
+			centerY = _w.innerHeight / 2;
 		};
+
+		/**
+		 * @type {Function} Update Mouse position variables
+		 * @param {Object | Event} args Window object
+		 */
 		const updateMousePos = (args) => {
+			if (typeof args === "undefined") return;
 			mousePosX = args.x || args.e.pageX;
 			mousePosY = args.y || args.e.pageY;
 		};
 
 		// mouse events
 		["mousemove", "touchmove", "touchstart"].forEach((listener) => {
-			d.addEventListener(listener, (event) => {
+			_d.addEventListener(listener, (event) => {
 				updateMousePos({ e: event });
 			});
 		});
 
 		// window interaction events
 		["load", "resize"].forEach((listener) => {
-			w.addEventListener(listener, () => {
+			_w.addEventListener(listener, () => {
 				updateCenter();
 				updateMousePos({ x: centerX, y: centerY });
 			});
 		});
 
 		// calculate parallax positions
-		const sceneItems = d.querySelectorAll(".parallax");
+		const sceneItems = _d.querySelectorAll(".parallax");
 		let transformX = 0,
 			transformY = 0;
+
+		/**
+		 * @type {Function} Image format support detection
+		 */
 		const parallaxRenderer = () => {
 			// define distance variables
 			let distanceX = centerX - mousePosX - transformX,
@@ -66,18 +87,27 @@
 
 			// update all parallax items
 			sceneItems.forEach((item) => {
-				const depth = item.getAttribute("data-depth");
+				if (!(item instanceof HTMLElement)) return;
+				const depth = Number(item.getAttribute("data-depth"));
 				item.style.transform = `translate3d(${~~(transformX * depth) / 100}px, ${~~(transformY * depth) / 100}px, 0px)`;
 			});
 		};
 
-		// render everything on scene
-		(function sceneRenderer() {
+		/**
+		 * @type {FrameRequestCallback} Render everything on scene
+		 */
+		const sceneRenderer = () => {
 			parallaxRenderer();
 			requestAnimationFrame(sceneRenderer);
-		})();
+		};
+		requestAnimationFrame(sceneRenderer);
 	};
 
-	// when document is loaded
-	document.addEventListener("DOMContentLoaded", main(window, document, document.documentElement));
+	// Run main function when DOM is loaded
+	window.addEventListener("DOMContentLoaded", () => {
+		main(window, document, document.documentElement, document.body);
+	});
+
+	// End of script
+	return 0;
 })();
