@@ -74,7 +74,7 @@
 		const sceneRenderer = () => {
 			const performanceNow = performance.now(),
 				elapsed = performanceNow - performancePrev,
-				calculated = ~~((1 / elapsed) * 112.5);
+				calculated = Math.max(~~((1 / elapsed) * 112.5), 6);
 
 			// define distance variables
 			let distanceX = centerX - mousePosX - transformX,
@@ -97,9 +97,7 @@
 	};
 
 	// Run main function when DOM is loaded
-	window.addEventListener("DOMContentLoaded", () => {
-		main(window, document, document.documentElement, document.body);
-	});
+	main(window, document, document.documentElement, document.body);
 
 	// End of script
 	return 0;
